@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import BackButton from "../components/BackButton";
 import Spinner from "../components/Spinner";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import { useSnackbar } from "notistack";
 
-const EditBook = () => {
+const EditBook = ({ view }) => {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [publishYear, setPublishYear] = useState("");
@@ -45,7 +45,7 @@ const EditBook = () => {
       .then(() => {
         setLoading(false);
         enqueueSnackbar("Book Edited Successfully", { variant: "success" });
-        navigate("/");
+        navigate(`/${view}`);
       })
       .catch((error) => {
         setLoading(false);
@@ -56,7 +56,7 @@ const EditBook = () => {
 
   return (
     <div className="p-4">
-      <BackButton />
+      <BackButton destination={view} />
       <h1 className="text-3xl my-4">Edit Book</h1>
       {loading ? (
         <Spinner />

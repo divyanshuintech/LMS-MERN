@@ -9,7 +9,6 @@ import BooksCard from "../components/home/BooksCard";
 const Home = () => {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [showType, setShowType] = useState("table");
   const navigate = useNavigate();
 
   useEffect(() => {

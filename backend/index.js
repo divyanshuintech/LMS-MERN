@@ -1,8 +1,8 @@
 import express from "express";
-import 'dotenv/config'
+import "dotenv/config";
 import mongoose from "mongoose";
-import booksRoute from './routes/booksRoute.js'
-import cors from 'cors'
+import booksRoute from "./routes/booksRoute.js";
+import cors from "cors";
 
 const app = express();
 
@@ -13,21 +13,21 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
-    console.log(req)
-    return res.status(200).send("/ Route created successfully!")
-})
+  console.log(req);
+  return res.status(200).send("/ Route created successfully!");
+});
 
-app.use('/books', booksRoute)
-
-
+app.use("/books", booksRoute);
 
 //MongoDB connection
 mongoose
-    .connect(process.env.MONGO_URI)
-    .then(() => {
-        console.log("Database connected successfully")
-        app.listen(process.env.PORT, () => {
-            console.log(`Server is listening on Port ${process.env.PORT}`)
-        })
-    })
-    .catch((error) => console.log(error))
+  .connect(process.env.MONGO_URI, {
+    dbName: "LMS",
+  })
+  .then(() => {
+    console.log("Database connected successfully");
+    app.listen(process.env.PORT, () => {
+      console.log(`Server is listening on Port ${process.env.PORT}`);
+    });
+  })
+  .catch((error) => console.log(error));

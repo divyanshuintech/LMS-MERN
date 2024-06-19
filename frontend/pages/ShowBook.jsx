@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import BackButton from "../components/BackButton";
 import Spinner from "../components/Spinner";
 
-const ShowBook = () => {
+const ShowBook = ({ view }) => {
   const [book, setBook] = useState({});
   const [loading, setLoading] = useState(false);
   const { id } = useParams();
@@ -25,7 +25,7 @@ const ShowBook = () => {
 
   return (
     <div className="p-4">
-      <BackButton />
+      <BackButton destination={view} />
       <h1 className="text-3xl my-4">Show Book</h1>
       {loading ? (
         <Spinner />
